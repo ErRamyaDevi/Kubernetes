@@ -28,3 +28,7 @@ i.e, if a container becomes unhealthy, then inbuilt load balancer can't identifi
 
 Kubernetes feature:
 It has HPA which results in Highly available Auto-scaling and serves the scaling up new containers out with its new IP addresses to users through load balancer by actively sending response to healthy containers and removes the unhealthy one.
+
+Problem 4: Not Supports high Enterprise applications:
+
+Docker is a light-weight container as its resources and OS are being shared which restricts docker to support Enterprise level.
