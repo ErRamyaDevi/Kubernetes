@@ -1,5 +1,6 @@
 KUBERNETES - K8S
 Kubernetes is not a extended version of Docker.
+Kubernetes is a cluster based Technology.
 Docker is a containerization platforms and has individual lifecycle and has been managed by Docker Swarm previously. Due to lack of Orchestration of containers in docker swarm, it was replaced by Kubernetes.
 Kubernetes is a container orchestration platform.It has many in-built properties.
 
@@ -31,4 +32,20 @@ It has HPA which results in Highly available Auto-scaling and serves the scaling
 
 Problem 4: Not Supports high Enterprise applications:
 
-Docker is a light-weight container as its resources and OS are being shared which restricts docker to support Enterprise level.
+Docker is a light-weight container as its resources and OS are being shared which restricts docker to support Enterprise level.Absence of Firewall, Auto-scaling,load balancer,Auto Healing.
+
+Does Kubernetes can install and work in a single Machine?
+Yes, it can - but it would be in a development environment i.e., staging, UAT. but not in production environment.
+In Development phase we can use Minikube and not in production mode. For interview purpose we should not say that we have worked in Minikube.
+
+single Host- testing
+Master Node and worker Node - production
+
+How kubernetes resolves above mentioned problems in Single Host?
+
+If any container is getting down, the K8 Master will up this container in a same or different node. If it is a faulty node, then K8s will start this application or pods into another node.
+
+Kubernetes has old Feature Replica sets where we can change replicas option from 1 to 10 which is a manual scaling. However, it also has HPA. Whenever the load gets increased, HPA will spin up the pods as loads.
+
+Kubernetes will control and fix the damage. when any one of pod is getting down then K8s API server will receive a signal that pods is getting down. Then API server will roll out a new pod before the faulty pod is down.
+
