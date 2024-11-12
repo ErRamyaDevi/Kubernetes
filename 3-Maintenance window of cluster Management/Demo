@@ -1,0 +1,88 @@
+Maintenance windows Kubernetes Cluster
+
+Node Draining
+
+Node draining is the process of safely evicting all the pods from a Kubernetes node before performing maintenance on that node or removing it from the cluster. Application shouldn't impacted by this process.
+
+Draining Node : Containers running on that node will be gracefully terminated and re-schedule to another available node.
+
+Draining K8s Node
+
+Use Kubectl to drain node
+
+kubectl drain <node_name>
+
+Ignore DaemonSet
+
+DaemonSets are designed to run a copy of a pod on every node in the cluster. When draining a node, you might want to keep these pods running because they are typically critical for cluster operations (like logging or monitoring). DaemonSet means pods that are tied to each node. If any DaemonSet is running in your K8s cluster, use command -
+
+kubectl drain <node_name> --ignore-daemonsets
+
+Uncordoning a Node
+
+After you’ve completed the maintenance and want to bring the node back into service, you need to mark the node as schedulable again. This is done with the kubectl uncordon command. Here’s how you use it:
+
+kubectl uncordon <node-name>
+
+Demo
+
+Lets create a directory called nodedraining in master node and create a file called pod.yaml inside the nodedraining folder.
+
+pods.yaml file
+
+https://github.com/kohlidevops/DevOpsWithKubernetes/blob/main/3%20-%20K8%20Cluster%20-%20Maintenance%20window/pods.yaml
+
+Then run this pods.yaml file on the master node
+
+kubectl apply -f pods.yaml
+
+image
+
+create a deployment.yaml file inside a nodedraining folder
+
+https://github.com/kohlidevops/DevOpsWithKubernetes/blob/main/3%20-%20K8%20Cluster%20-%20Maintenance%20window/deployment.yaml
+
+kubectl apply -f deployment.yaml
+kubect get nodes
+kubectl get pods -o wide
+
+image
+
+To drain the node
+
+kubectl drain <node-name>
+
+image
+
+We are getting two errors - cannnot delete the pods are declared and cannot delete the pods which has daemons like calico proxy.
+
+kubectl drain <node-name> --ignore-daemonsets
+
+still getting error with pods declared For this we can run below command to evict the worker node from the k8 cluster.
+
+kubectl drain <node-name> --ignore-daemonsets --force
+
+Now scheduling has been disabled for one node but still it is ready state means no new resource has been schedule to this particular node.
+
+image
+
+If you check with list pods commands, then you can see the new pod has been reschedule in the available node.
+
+kubectl get pods -o wide
+
+image
+
+When you drain the node, the pods which are running on the particular node, they will terminate gracefully and rescheduled on the available worker node.
+
+pods.yaml -> which are executed explictly on the worker node that is getting deleted when you drain the node.
+
+deployment.yaml -> which are deployed by deployment file contains replicas (that replica controller is stateful). So this should be rescheduled to other available worker nodes
+
+To rejoin (uncordon) the worker node to the k8 cluster
+
+After you’ve completed the maintenance and want to bring the node back into service, you need to mark the node as schedulable again. This is done with the kubectl uncordon command
+
+kubectl uncordon <node-name>
+kubectl get nodes
+
+image
