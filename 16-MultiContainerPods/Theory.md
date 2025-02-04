@@ -30,6 +30,7 @@ sudo nano multi-container.yaml
 kubectl apply -f multi-container.yaml
 kubectl get pods -o wide
 kubectl exec -it two-containers --curl http://192.168.235.140:80
+```
+![image](https://github.com/user-attachments/assets/b56cb4e5-baca-4c60-9039-cbef5a8a539c)
 
-![image](https://github.com/user-attachments/assets/d651cb84-d693-43cb-9882-09fbcfaeca72)
 ## Now I can able to access. Because after the multi-container the volume has been shared. second container mounted volume has the custom index.html
