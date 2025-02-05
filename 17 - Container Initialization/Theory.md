@@ -25,11 +25,12 @@
 ➢ Populate Data at Shared Volume before Application StartUp.
 
 # Demo - Init Container
+
 ```
 sudo -i
 cd pods_and_containers
 sudo nano init-containers.yaml
-(paste the code)
+(paste the code) https://github.com/ErRamyaDevi/Kubernetes/blob/main/17%20-%20Container%20Initialization/Init-container.yaml
 kubectl apply -f init-containers.yaml
 kubectl get pods -o wide
 kubectl logs example-pod<podname> -c main-app
