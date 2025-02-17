@@ -110,4 +110,4 @@ kubect get pods -o wide
 
 ![image](https://github.com/user-attachments/assets/f57a6a63-1e70-430f-b37a-ec7038ca81e2)
 
-This pod definetely will assign to another node. Because this yaml doesn't mention any label like "disktype=ssd".
+This pod definetely will assign to another node. Because this yaml doesn't mention any label like "disktype=ssd".so the scheduler will assign to the available nodes(free nodes).
