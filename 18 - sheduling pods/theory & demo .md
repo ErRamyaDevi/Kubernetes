@@ -73,7 +73,7 @@ My nodename pod has been assigned to the particular node what I mentioned in nod
 cd pods_allocation
 nano resource-request1.yaml
 
-
+https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/resource-request1.yaml
 
 //Here this pod will assign to the worker node which has "disktype=ssd and mem - 64 MB & cpu - 1000m"
 //disktype=ssd - This label already assigned to the worker node called worker1
