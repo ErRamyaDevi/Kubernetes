@@ -28,7 +28,9 @@ sudo -i
 mkdir pods_allocation
 cd pods_allocation
 nano nodeselector.yaml
-https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/nodename.yaml
+
+https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/nodeselector.yaml
+
 kubectl apply -f nodeselector.yaml
 kubectl get pods -o wide
 kubect describe pod nginx-nodeselector
