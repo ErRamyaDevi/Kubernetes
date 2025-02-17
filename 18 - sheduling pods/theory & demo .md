@@ -49,3 +49,18 @@ kubectl get nodes --show-labels
 ```
 
 ![image](https://github.com/user-attachments/assets/0f8be97a-96c6-4dad-ae69-3026e8d89543)
+
+
+# Demo - Node Name:-
+```
+cd pods_allocation
+nano nodename.yaml
+
+
+
+kubectl apply -f nodename.yaml
+kubectl get pods -o wide
+```
+![image](https://github.com/user-attachments/assets/cfe852fd-e665-44a0-9a7a-a72e13d2057a)
+
+My nodename pod has been assigned to the particular node what i mentioned in nodename yaml file.
