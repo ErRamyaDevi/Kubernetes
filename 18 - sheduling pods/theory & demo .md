@@ -104,7 +104,7 @@ Let run one more pod without node selector "disktype=ssd"
 cd pods_allocation
 nano resource-request2.yaml
 
-
+https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/resource-request2.yaml
 
 kubectl apply -f resource-request2.yaml
 kubect get pods -o wide
