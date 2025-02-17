@@ -50,6 +50,7 @@ kubectl get nodes --show-labels
 
 ![image](https://github.com/user-attachments/assets/0f8be97a-96c6-4dad-ae69-3026e8d89543)
 
+Now, Failed scheduling has been successfully assigned - So pod has been is active now.
 
 # Demo - Node Name:-
 ```
@@ -63,4 +64,50 @@ kubectl get pods -o wide
 ```
 ![image](https://github.com/user-attachments/assets/cfe852fd-e665-44a0-9a7a-a72e13d2057a)
 
-My nodename pod has been assigned to the particular node what i mentioned in nodename yaml file.
+My nodename pod has been assigned to the particular node what I mentioned in nodename yaml file.
+
+# Demo - Resource Request:-
+```
+cd pods_allocation
+nano resource-request1.yaml
+
+
+
+//Here this pod will assign to the worker node which has "disktype=ssd and mem - 64 MB & cpu - 1000m"
+//disktype=ssd - This label already assigned to the worker node called worker1
+
+kubectl apply -f resource-request1.yaml
+kubectl get pods -o wide
+```
+
+![image](https://github.com/user-attachments/assets/f4865939-2f3f-4def-83f4-836d3f525075)
+
+This pod also assigned to the same worker1 node.
+
+Lets copy the same pod yaml and name it as resource-request3.yaml . Run it again and check whether it is assigned to the same worker node1 or not
+```
+nano resource-request3.yaml
+
+
+
+kubectl apply -f resource-request3.yaml
+kubectl get pods -o wide
+```
+![image](https://github.com/user-attachments/assets/8712992d-2705-456d-b6b3-6e6677644410)
+
+This pod is still pending. Because this pod meet first dependency that is "disktype=ssd" and it cant able to meet the cpu & mem dependency. So it cant able to assign the pod.
+
+Let run one more pod without node selector "disktype=ssd"
+```
+cd pods_allocation
+nano resource-request2.yaml
+
+
+
+kubectl apply -f resource-request2.yaml
+kubect get pods -o wide
+```
+
+![image](https://github.com/user-attachments/assets/f57a6a63-1e70-430f-b37a-ec7038ca81e2)
+
+This pod definetely will assign to another node. Because this yaml doesn't mention any label like "disktype=ssd".
