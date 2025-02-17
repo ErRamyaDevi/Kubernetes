@@ -90,7 +90,7 @@ Lets copy the same pod yaml and name it as resource-request3.yaml . Run it again
 ```
 nano resource-request3.yaml
 
-
+https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/resource-request3.yaml
 
 kubectl apply -f resource-request3.yaml
 kubectl get pods -o wide
