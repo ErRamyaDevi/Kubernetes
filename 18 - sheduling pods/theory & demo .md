@@ -59,7 +59,7 @@ Now, Failed scheduling has been successfully assigned - So pod has been is activ
 cd pods_allocation
 nano nodename.yaml
 
-
+https://github.com/ErRamyaDevi/Kubernetes/blob/main/18%20-%20sheduling%20pods/nodename.yaml
 
 kubectl apply -f nodename.yaml
 kubectl get pods -o wide
